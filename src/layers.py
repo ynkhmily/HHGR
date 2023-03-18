@@ -301,11 +301,15 @@ class Contrast(nn.Module):
         z_proj_sc = self.proj(z_sc)
 
         matrix_mp2sc = self._sim(z_proj_mp, z_proj_sc)
+        matrix_sc2mp = matrix_mp2sc.t()
 
         pos = pos.to_dense()
 
         matrix_mp2sc = matrix_mp2sc/(torch.sum(matrix_mp2sc, dim=1).view(-1, 1) + 1e-8)
         lori_mp = -torch.log(matrix_mp2sc.mul(pos).sum(dim=-1)).mean()
-
-        return lori_mp
+        
+        matrix_sc2mp = matrix_sc2mp/(torch.sum(matrix_sc2mp, dim=1).view(-1, 1) + 1e-8)
+        lori_sc = -torch.log(matrix_sc2mp.mul(pos).sum(dim=-1)).mean()
+        
+        return lori_mp + lori_sc
 
