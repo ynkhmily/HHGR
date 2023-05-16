@@ -12,7 +12,7 @@ torch-sparse==0.6.13
 
 # Preprocessing
 ## Dataset
-Create a folder ``data`` to store source data files.
+Create a folder [data](https://drive.google.com/drive/folders/1azfYzx3dxYUm-ZklZR9SDCs88UZBgkjB?usp=share_link) to store source data files.
 
 ## Prepocess the data
 Generate the postive samples:
